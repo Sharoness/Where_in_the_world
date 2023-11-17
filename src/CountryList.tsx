@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Card from "./Card"
+import { ICardInterface } from "./interface";
+
 
 const CountryList = () => {
-	const [countries, setCountries] = useState();
+	const [countries, setCountries] = useState([]);
 
 	useEffect(() => {
 		fetchCountries();
@@ -15,9 +17,16 @@ const CountryList = () => {
 		console.log(countries);
 	}
 
+
+	if(countries.length < 1) return <>Loading..</>
+
     return (
         <>
-            <Card></Card>
+
+		{countries.map((item: ICardInterface, key) => 
+			<Card key={key} image={item.flags.svg} nameCountry={item.name.common} region={item.region} population={item.population} capital={item.capital}/>	 
+		)}
+            
         </>
     )
 }
