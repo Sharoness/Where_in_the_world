@@ -25,7 +25,7 @@ const Card: FunctionComponent<ICardInterface> = (props: ICardInterface) => {
                     {props.region}
                 </div>
                 <div>
-                    <span>Capital:</span>
+                    <span>Capital: </span>
                     {props.capital}
                 </div>
             </div>
