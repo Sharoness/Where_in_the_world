@@ -28,7 +28,12 @@ function App() {
             setTheme("light-mode");
         }
     };
-    
+
+    const handleSearch = (value) => {
+        let lowercaseValue = value.toLowerCase();
+        setFilteredCountries(countries.filter( (item) => item.name.common.toLowerCase().includes(lowercaseValue)));
+    }
+
     const handleDropdown = (value) => {
         if (value === "All") {
             setFilteredCountries(countries);
@@ -47,7 +52,7 @@ function App() {
                 </button>
             </header>
             <div>
-                <input />
+                <input onChange={(event) => handleSearch(event.target.value)} />
                 <div>
                     <select onChange={(event) => handleDropdown(event.target.value)}>
                         <option value="All">All</option>
