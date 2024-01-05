@@ -71,3 +71,10 @@ header {
 .title {
     font-weight: 800;
 }
+
+select {
+    padding: 7px;
+    height: 35px;
+    margin: 3px;
+    border-radius: 5px;
+}
