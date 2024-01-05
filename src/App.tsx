@@ -30,7 +30,11 @@ function App() {
     };
     
     const handleDropdown = (value) => {
-        setFilteredCountries(countries.filter( (item)=> item?.region === value));
+        if (value === "All") {
+            setFilteredCountries(countries);
+        } else {
+            setFilteredCountries(countries.filter( (item)=> item?.region === value));
+        }
     }
 
     return (
@@ -46,6 +50,7 @@ function App() {
                 <input />
                 <div>
                     <select onChange={(event) => handleDropdown(event.target.value)}>
+                        <option value="All">All</option>
                         <option value="Africa">Africa</option>
                         <option value="Americas">America</option>
                         <option value="Asia">Asia</option>
