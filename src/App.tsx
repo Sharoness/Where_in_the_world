@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import CountryList from "./CountryList";
 
 function App() {
-    const [theme, setTheme] = useState("light-mode");
     const [countries, setCountries] = useState([]);
     const [filteredCountries, setFilteredCountries] = useState([]);
 
@@ -21,50 +20,33 @@ function App() {
         console.log(countries);
     }
 
-    const handleClick = () => {
-        if (theme === "light-mode") {
-            setTheme("dark-mode");
-        } else {
-            setTheme("light-mode");
-        }
-    };
-
     const handleSearch = (value) => {
         let lowercaseValue = value.toLowerCase();
-        setFilteredCountries(countries.filter( (item) => item.name.common.toLowerCase().includes(lowercaseValue)));
+        setFilteredCountries(countries.filter((item) => item.name.common.toLowerCase().includes(lowercaseValue)));
     }
 
     const handleDropdown = (value) => {
         if (value === "All") {
             setFilteredCountries(countries);
         } else {
-            setFilteredCountries(countries.filter( (item)=> item?.region === value));
+            setFilteredCountries(countries.filter((item)=> item?.region === value));
         }
     }
 
     return (
-        <div className={theme}>
-            <header className="header elements">
-                <div className="title">Where in the world?</div>
-                <button onClick={handleClick}>
-                    <FontAwesomeIcon icon={faMoon} />
-                    Dark mode
-                </button>
-            </header>
+        <div>
+            <input onChange={(event) => handleSearch(event.target.value)} />
             <div>
-                <input onChange={(event) => handleSearch(event.target.value)} />
-                <div>
-                    <select onChange={(event) => handleDropdown(event.target.value)}>
-                        <option value="All">All</option>
-                        <option value="Africa">Africa</option>
-                        <option value="Americas">America</option>
-                        <option value="Asia">Asia</option>
-                        <option value="Europe">Europe</option>
-                        <option value="Oceania">Oceania</option>
-                    </select>
-                </div>
-                <CountryList countries={filteredCountries} />
+                <select onChange={(event) => handleDropdown(event.target.value)}>
+                    <option value="All">All</option>
+                    <option value="Africa">Africa</option>
+                    <option value="Americas">America</option>
+                    <option value="Asia">Asia</option>
+                    <option value="Europe">Europe</option>
+                    <option value="Oceania">Oceania</option>
+                </select>
             </div>
+            <CountryList countries={filteredCountries} />
         </div>
     );
 }
