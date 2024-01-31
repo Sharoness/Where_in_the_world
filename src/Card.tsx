@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react";
+import { useNavigate } from 'react-router-dom';
 
 interface ICardInterface {
     image: string;
@@ -9,8 +10,15 @@ interface ICardInterface {
 }
 
 const Card: FunctionComponent<ICardInterface> = (props: ICardInterface) => {
+    const navigate = useNavigate();
+
+    const handleClick = (value) => {
+        navigate(`/details/${value}`, {state: {key: "value"}});
+    }
+
     return (
         <div className="card elements">
+            <button onClick={() => handleClick(props.nameCountry)}>button</button>
             <div>
                 <img className="flagImage" src={props.image}></img>
             </div>
