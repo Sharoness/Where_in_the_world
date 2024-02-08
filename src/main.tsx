@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     element: <Layout><App /></Layout>,
   },
   {
-    path: "/details/:whatevah",
+    path: "/details/:country",
     element: <Layout><CountryDetails /></Layout>,
   },
 ]);
