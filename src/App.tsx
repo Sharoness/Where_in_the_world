@@ -17,7 +17,6 @@ function App() {
         const countries = await response.json();
         setCountries(countries);
         setFilteredCountries(countries);
-        console.log(countries);
     }
 
     const handleSearch = (value) => {
