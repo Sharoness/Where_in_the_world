@@ -36,7 +36,7 @@ const CountryDetails = (props) => {
         }
         const response = await fetch(url); 
         const country = await response.json();
-        
+    
         setCountry(country[0]);
         setBorders(country[0].borders);
     }
