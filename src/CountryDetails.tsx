@@ -12,7 +12,7 @@ interface ICardInterface {
     // onClick: () => void;
 }
 
-const CountryDetails = (props) => {
+const CountryDetails = ({defaultCountries}) => {
     const [country, setCountry] = useState();
     const [borders, setBorders] = useState([]);
     const [code, setCode] = useState()
@@ -25,7 +25,11 @@ const CountryDetails = (props) => {
         fetchcountry();
     }, [code]);
     
-    // https://restcountries.com/v3.1/alpha/{code}
+    
+    useEffect(() => {
+    }, [defaultCountries]);
+    
+    
     async function fetchcountry() {
            
         let url
@@ -36,9 +40,13 @@ const CountryDetails = (props) => {
         }
         const response = await fetch(url); 
         const country = await response.json();
-    
         setCountry(country[0]);
         setBorders(country[0].borders);
+        country[0].borders.map((countryBorder)=>{
+           const cioc =  defaultCountries.filter((defCountries)=> defCountries.cioc === countryBorder)[0]
+        //    const fullCountyName = 
+
+        })
     }
 
 
@@ -59,6 +67,7 @@ const CountryDetails = (props) => {
 
     return (
         <div>
+
         <button onClick={handleClick}>Back</button>
             {country && (
                 <div>
@@ -104,9 +113,9 @@ const CountryDetails = (props) => {
                 </div>
             )}
             <div>Border countries</div>
-            {borders.map((value) => {
+            {borders ? borders.map((value) => {
                 return (<button onClick={() => handleBottomBorderClick(value)} className='borderButton'>{value}</button>)
-            })}
+            }) : null}
         </div>
     );
 };

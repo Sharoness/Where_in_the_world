@@ -1,13 +1,33 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./App.css";
-import { faMoon } from "@fortawesome/free-regular-svg-icons";
-import { useEffect, useState } from "react";
-import CountryList from "./CountryList";
+import { useEffect, useState, createContext } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import CountryDetails from "./CountryDetails";
+import Layout from "./Layout";
+import Home from "./Home";
+
 
 function App() {
     const [countries, setCountries] = useState([]);
-    const [filteredCountries, setFilteredCountries] = useState([]);
-
+    
+    const router = createBrowserRouter([
+      {
+        path: "/",
+        element: (
+          <Layout>
+            <Home defaultCountries={countries} />
+          </Layout>
+        ),
+      },
+      {
+        path: "/details/:country",
+        element: (
+          <Layout>
+            <CountryDetails defaultCountries={countries} />
+          </Layout>
+        ),
+      },
+    ]);
+    
     useEffect(() => {
         fetchCountries();
     }, []);
@@ -16,38 +36,8 @@ function App() {
         const response = await fetch("https://restcountries.com/v3.1/all");
         const countries = await response.json();
         setCountries(countries);
-        setFilteredCountries(countries);
     }
 
-    const handleSearch = (value) => {
-        let lowercaseValue = value.toLowerCase();
-        setFilteredCountries(countries.filter((item) => item.name.common.toLowerCase().includes(lowercaseValue)));
-    }
-
-    const handleDropdown = (value) => {
-        if (value === "All") {
-            setFilteredCountries(countries);
-        } else {
-            setFilteredCountries(countries.filter((item)=> item?.region === value));
-        }
-    }
-
-    return (
-        <div>
-            <input onChange={(event) => handleSearch(event.target.value)} />
-            <div>
-                <select onChange={(event) => handleDropdown(event.target.value)}>
-                    <option value="All">All</option>
-                    <option value="Africa">Africa</option>
-                    <option value="Americas">America</option>
-                    <option value="Asia">Asia</option>
-                    <option value="Europe">Europe</option>
-                    <option value="Oceania">Oceania</option>
-                </select>
-            </div>
-            <CountryList countries={filteredCountries} />
-        </div>
-    );
+  return <RouterProvider router={router} />;
 }
-
 export default App;
