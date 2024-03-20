@@ -2,20 +2,12 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { ICountry, CurrencyName } from './interface';
 
-interface ICardInterface {
-    // image: string;
-    // nameCountry: string;
-    // population: number;
-    // region: string;
-    // capital: string;
-    // onClick: () => void;
-}
-
-const CountryDetails = ({defaultCountries}) => {
-    const [country, setCountry] = useState();
+const CountryDetails = ({defaultCountries} : {defaultCountries: ICountry}) => {
+    const [country, setCountry] = useState<ICountry>();
     const [borders, setBorders] = useState([]);
-    const [code, setCode] = useState()
+    const [countryPath, setCountryPath] = useState()
     const location = useLocation();
     const navigate = useNavigate();
     
@@ -23,7 +15,7 @@ const CountryDetails = ({defaultCountries}) => {
 
     useEffect(() => {
         fetchcountry();
-    }, [code]);
+    }, [countryPath]);
     
     
     useEffect(() => {
@@ -32,21 +24,18 @@ const CountryDetails = ({defaultCountries}) => {
     
     async function fetchcountry() {
            
-        let url
-        if(location.state.type == 'code') {
-            url = `https://restcountries.com/v3.1/alpha/${code}`
-        } else {
-            url = `https://restcountries.com/v3.1/name/${countryName}`
-        }
+       const url = `https://restcountries.com/v3.1/name/${countryName}`
+        
         const response = await fetch(url); 
         const country = await response.json();
         setCountry(country[0]);
-        setBorders(country[0].borders);
-        country[0].borders.map((countryBorder)=>{
-           const cioc =  defaultCountries.filter((defCountries)=> defCountries.cioc === countryBorder)[0]
-        //    const fullCountyName = 
-
+        
+        const fullBordercountryName = country[0].borders?.map((countryBorder)=>{
+           const cioc =  defaultCountries.filter((defCountries)=> defCountries.cca3 === countryBorder)[0]
+           const fullCountryName = cioc?.name.common;
+           return fullCountryName
         })
+        setBorders(fullBordercountryName);
     }
 
 
@@ -56,11 +45,11 @@ const CountryDetails = ({defaultCountries}) => {
 
     const handleBottomBorderClick = (country) => {
         navigate(`/details/${country}`,  {state: {type: "code"}});
-        setCode(country)
+        setCountryPath(country)
     }
 
 
-    const currency = (currenciesArray) => {
+    const currency = (currenciesArray: CurrencyName[] ) => {
         const currenciesName = currenciesArray.map((item) => item.name).toString();
         return currenciesName;
     }
@@ -113,8 +102,8 @@ const CountryDetails = ({defaultCountries}) => {
                 </div>
             )}
             <div>Border countries</div>
-            {borders ? borders.map((value) => {
-                return (<button onClick={() => handleBottomBorderClick(value)} className='borderButton'>{value}</button>)
+            {borders ? borders.map((value, index) => {
+                return (<button key={index} onClick={() => handleBottomBorderClick(value)} className='borderButton'>{value}</button>)
             }) : null}
         </div>
     );

@@ -1,19 +1,20 @@
-import Card from "./Card";
-import { ICardInterface } from "./interface";
+import Country from "./Card";
+import {ICountry } from "./interface";
 
-const CountryList = (props) => {
 
-    if (props.countries.length < 1) return <>Loading..</>;
+const CountryList = ({ countries }: {countries: ICountry[]}) => {
+
+    if (countries.length < 1) return <>Loading..</>;
 
     return (
         <div className="list">
-            {props.countries.map((item: ICardInterface, key) => (
-                <Card
+            {countries.map((item: ICountry, key:number) => (
+                <Country
                     key={key}
-                    image={item.flags.svg}
-                    nameCountry={item.name.common}
+                    image={item.flags!.svg}
+                    nameCountry={item.name!.common}
                     region={item.region}
-                    population={item.population}
+                    population={item!.population}
                     capital={item.capital}
                 />
             ))}

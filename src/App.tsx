@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import CountryDetails from "./CountryDetails";
 import Layout from "./Layout";

@@ -1,28 +1,27 @@
 import { useState, useEffect } from "react";
 import CountryList from "./CountryList";
+import { ICountry } from "./interface";
 
-function Home({ defaultCountries }) {
-    const [countries, setCountries] = useState(defaultCountries);
-    const [filteredCountries, setFilteredCountries] = useState(defaultCountries);
+function Home({ defaultCountries }: {defaultCountries: ICountry[]}) {
+    const [filteredCountries, setFilteredCountries] = useState<ICountry[]>(defaultCountries);
 
     useEffect(() => {
         setFilteredCountries(defaultCountries)
     }, [defaultCountries])
 
-    const handleSearch = (value) => {
+    const handleSearch = (value:string) => {
         const lowercaseValue = value.toLowerCase();
-        setFilteredCountries(countries.filter((item) => item.name.common.toLowerCase().includes(lowercaseValue)));
+        setFilteredCountries(defaultCountries.filter((item: ICountry) => (item.name!.common.toLowerCase().includes(lowercaseValue)))  );
     }
 
-    const handleDropdown = (value) => {
+    const handleDropdown = (value:string) => {
         if (value === "All") {
-            setFilteredCountries(countries);
+            setFilteredCountries(defaultCountries);
         } else {
-            setFilteredCountries(countries.filter((item)=> item?.region === value));
+            setFilteredCountries(defaultCountries.filter((item)=> item?.region === value));
         }
     }
 
-    
     return (
         <div>
             <input onChange={(event) => handleSearch(event.target.value)} />
