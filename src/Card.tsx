@@ -1,23 +1,16 @@
 import { FunctionComponent } from "react";
 import { useNavigate } from 'react-router-dom';
+import { ICountry } from "./interface";
 
-interface ICardInterface {
-    image: string;
-    nameCountry: string;
-    population: number;
-    region: string;
-    capital: string;
-}
-
-const Card: FunctionComponent<ICardInterface> = (props: ICardInterface) => {
+const Country: FunctionComponent<ICountry> = (props: ICountry) => {
     const navigate = useNavigate();
 
-    const handleClick = (value) => {
+    const handleClick = (value:string) => {
         navigate(`/details/${value}`, {state: {key: "value"}});
     }
 
     return (
-        <div className="card elements">
+        <div className="Country elements card">
             <button onClick={() => handleClick(props.nameCountry)}>button</button>
             <div>
                 <img className="flagImage" src={props.image}></img>
@@ -41,4 +34,4 @@ const Card: FunctionComponent<ICardInterface> = (props: ICardInterface) => {
     );
 };
 
-export default Card;
+export default Country;
