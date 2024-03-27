@@ -1,87 +1,110 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-size: 16px;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
 button {
-    all: unset;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  width: 50px;
+  height: fit-content;
 }
 
 .light-mode {
-    background-color: hsl(0, 0%, 98%);
-    color: hsl(200, 15%, 8%);
-    height: auto;
+  background-color: hsl(0, 0%, 98%);
+  color: hsl(200, 15%, 8%);
+  height: auto;
+}
+
+.light-mode button {
+  background-color: hsl(0, 0%, 100%);
+  color: black;
+  border-color: black;
+  border: solid 1px black;
+  box-shadow: 0px 0px 5px 2px #80808045;
 }
 
 .light-mode .elements {
-    background-color: hsl(0, 0%, 100%);
+  background-color: hsl(0, 0%, 100%);
 }
 
 .dark-mode {
-    background-color: hsl(207, 26%, 17%);
-    color: hsl(0, 0%, 100%);
-    height: auto;
+  background-color: hsl(207, 26%, 17%);
+  color: hsl(0, 0%, 100%);
+  height: auto;
+}
+
+.dark-mode button {
+  background-color: hsl(209, 23%, 22%);
+  color: white;
+  border-color: rgb(255, 255, 255);
+  border: solid 1px black;
+  box-shadow: 0px 0px 5px 2px #80808045;
 }
 
 .dark-mode .elements {
-    background-color: hsl(209, 23%, 22%);
+  background-color: hsl(209, 23%, 22%);
 }
 
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-    padding: 10px;
-    font-family: "Nunito Sans", serif;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+  padding: 10px;
+  font-family: "Nunito Sans", serif;
 }
 
 .flagImage {
-    height: auto;
-    width: 100%;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+  height: auto;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 250px;
-    padding: 0px;
-    font-family: "Nunito Sans", serif;
-    margin: 20px;
-    box-shadow: 0px 0px 5px 2px #80808045;
-    border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 250px;
+  padding: 0px;
+  font-family: "Nunito Sans", serif;
+  margin: 20px;
+  box-shadow: 0px 0px 5px 2px #80808045;
+  border-radius: 5px;
 }
 
 .list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .text {
-    padding: 20px;
+  padding: 20px;
 }
 
 .title {
-    font-weight: 800;
+  font-weight: 800;
 }
 
 select {
-    padding: 7px;
-    height: 35px;
-    margin: 3px;
-    border-radius: 5px;
+  padding: 7px;
+  height: 35px;
+  margin: 3px;
+  border-radius: 5px;
 }
 
 .borderButton {
-    background-color: aliceblue;
-    border: solid 1px black;
-    margin: 5px;
-    padding: 5px;
+  background-color: aliceblue;
+  border: solid 1px black;
+  box-shadow: 0px 0px 5px 2px #80808045;
+  border-radius: 5px;
+  color: black;
+  margin: 5px;
+  padding: 5px;
 }

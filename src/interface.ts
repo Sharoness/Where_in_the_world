@@ -1,10 +1,10 @@
 export interface ICountry {
 	name?: IName;
-    image: string;
-    nameCountry: string;
-    capital: string;
-    population: number;
-    region: string;
+    image?: string;
+    nameCountry?: string;
+    capital?: string;
+    population?: number;
+    region?: string;
     flags?: IFlags;
     subregion?: string;
     borders?: string[];

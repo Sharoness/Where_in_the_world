@@ -4,10 +4,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import CountryDetails from "./CountryDetails";
 import Layout from "./Layout";
 import Home from "./Home";
+import { ICountry } from "./interface";
 
 
 function App() {
-    const [countries, setCountries] = useState([]);
+    const [countries, setCountries] = useState<ICountry[]>([]);
     
     const router = createBrowserRouter([
       {
@@ -34,7 +35,7 @@ function App() {
 
     async function fetchCountries() {
         const response = await fetch("https://restcountries.com/v3.1/all");
-        const countries = await response.json();
+        const countries: ICountry[] = await response.json();
         setCountries(countries);
     }
 

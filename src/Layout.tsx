@@ -1,6 +1,6 @@
 import { faMoon } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FC, ReactNode, useState } from 'react';
+import { useState } from 'react';
 
 interface ILayoutInterface {
   children: React.ReactNode;
