@@ -23,7 +23,7 @@ export default function Layout({children}: ILayoutInterface) {
       <header className="header elements">
           <div className="title">Where in the world?</div>
           <button onClick={handleClick}>
-              <FontAwesomeIcon icon={faMoon} />
+              <FontAwesomeIcon className='icon-padding' icon={faMoon} />
               Dark mode
           </button>
       </header>

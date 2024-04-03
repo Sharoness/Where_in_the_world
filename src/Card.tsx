@@ -15,7 +15,7 @@ const Country: FunctionComponent<ICountry> = (props: ICountry) => {
             <div onClick={() => handleClick(props.nameCountry!)}><div>
                 <img className="flagImage" src={props.image}></img>
             </div>
-            <div className="text">
+            <div className="container">
                 <span className="title">{props.nameCountry}</span>
                 <div>
                     <span>Population: </span>

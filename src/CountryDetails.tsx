@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { ICountry, CurrencyName } from './interface';
 import "./App.css";
+import { faArrowAltCircleLeft, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 const CountryDetails = ({defaultCountries} : {defaultCountries: ICountry[]}) => {
     const [country, setCountry] = useState<ICountry>();
     const [borders, setBorders] = useState([]);
@@ -55,15 +57,15 @@ const CountryDetails = ({defaultCountries} : {defaultCountries: ICountry[]}) => 
     }
 
     return (
-        <div>
+        <div className='container'>
 
-        <button className= "borderButton" onClick={handleClick}>Back</button>
+        <button className= "borderButton" onClick={handleClick}> <FontAwesomeIcon className='icon-padding' icon={faArrowLeft}/> Back</button>
             {country && (
                 <div>
                     <div>
                         <img className="flagImage" src={country.flags!.svg}></img>
                     </div>
-                    <div className="text">
+                    <div>
                         <span className="title">{country.name!.common}</span>
                         <div>
                             <span>Native Name: </span>
