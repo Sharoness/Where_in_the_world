@@ -12,6 +12,7 @@ button {
   padding: 5px;
   width: 150px;
   height: fit-content;
+  
 }
 
 
@@ -64,6 +65,7 @@ header {
 .header button {
 box-shadow: none;
 
+
 }
 
 .icon-padding {
@@ -109,4 +111,9 @@ select {
   height: 35px;
   margin: 3px;
   border-radius: 5px;
+}
+
+.border-button {
+margin-bottom: 50px;
+margin-top: 30px;
 }
